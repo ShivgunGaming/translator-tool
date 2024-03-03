@@ -39,7 +39,7 @@ function speakTranslatedText() {
 
 // Function to fetch translation from Google Translation API
 async function fetchTranslation(text, targetLanguage) {
-    const apiKey = 'AIzaSyBdDQWJuV71QU-PY0Saqb3w06jA3PcU_TE'; // Replace with your Google Cloud Platform API key
+    const apiKey = ''; // Replace with your Google Cloud Platform API key
     const apiUrl = `https://translation.googleapis.com/language/translate/v2?key=${apiKey}`;
 
     const response = await fetch(apiUrl, {
