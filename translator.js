@@ -39,7 +39,7 @@ function speakTranslatedText() {
 
 // Function to fetch translation from Google Translation API
 async function fetchTranslation(text, targetLanguage) {
-    const apiKey = ''; // Replace with your Google Cloud Platform API key
+    const apiKey = 'YOUR_API_KEY'; // Replace with your Google Cloud Platform API key
     const apiUrl = `https://translation.googleapis.com/language/translate/v2?key=${apiKey}`;
 
     const response = await fetch(apiUrl, {
@@ -59,7 +59,13 @@ async function fetchTranslation(text, targetLanguage) {
         throw new Error(data.error.message);
     }
 
-    return data.data.translations[0].translatedText;
+    const translatedText = data.data.translations[0].translatedText;
+
+    // Decode HTML entities in the translated text
+    const parser = new DOMParser();
+    const decodedText = parser.parseFromString(`<!doctype html><body>${translatedText}`, 'text/html').body.textContent;
+
+    return decodedText;
 }
 
 // Event listeners for buttons
